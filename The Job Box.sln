@@ -3,7 +3,12 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29709.97
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "The Job Box", "The Job Box\The Job Box.csproj", "{9F23E207-7FDF-4070-8FF4-64529081D908}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "The Job Box", "The Job Box\The Job Box.csproj", "{9F23E207-7FDF-4070-8FF4-64529081D908}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{653F5A6F-F5AC-4867-B701-064832B06062}"
+	ProjectSection(SolutionItems) = preProject
+		Project Properties and Details.txt = Project Properties and Details.txt
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
