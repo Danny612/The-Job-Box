@@ -13,13 +13,103 @@
     <None Include="Views\Shared\_ValidationScriptsPartial.cshtml" />
     <None Include="Views\_ViewImports.cshtml" />
     <None Include="Views\_ViewStart.cshtml" />
+    <None Include="wwwroot\img\b1.jpg" />
+    <None Include="wwwroot\img\b2.jpg" />
+    <None Include="wwwroot\img\blog.jpg" />
+    <None Include="wwwroot\img\blog1.jpg" />
+    <None Include="wwwroot\img\blog2.jpg" />
+    <None Include="wwwroot\img\blog\.DS_Store" />
+    <None Include="wwwroot\img\blog\blog-banner.jpg" />
+    <None Include="wwwroot\img\blog\c1.jpg" />
+    <None Include="wwwroot\img\blog\c2.jpg" />
+    <None Include="wwwroot\img\blog\c3.jpg" />
+    <None Include="wwwroot\img\blog\c4.jpg" />
+    <None Include="wwwroot\img\blog\c5.jpg" />
+    <None Include="wwwroot\img\blog\l1.jpg" />
+    <None Include="wwwroot\img\blog\l2.jpg" />
+    <None Include="wwwroot\img\blog\l3.jpg" />
+    <None Include="wwwroot\img\blog\l4.jpg" />
+    <None Include="wwwroot\img\blog\next.jpg" />
+    <None Include="wwwroot\img\blog\p1.jpg" />
+    <None Include="wwwroot\img\blog\p2.jpg" />
+    <None Include="wwwroot\img\blog\p3.jpg" />
+    <None Include="wwwroot\img\blog\p4.jpg" />
+    <None Include="wwwroot\img\blog\prev.jpg" />
+    <None Include="wwwroot\img\blog\r1.jpg" />
+    <None Include="wwwroot\img\blog\r2.jpg" />
+    <None Include="wwwroot\img\blog\r3.jpg" />
+    <None Include="wwwroot\img\blog\r4.jpg" />
+    <None Include="wwwroot\img\blog\s-img.jpg" />
+    <None Include="wwwroot\img\blog\slider.jpg" />
+    <None Include="wwwroot\img\blog\user.jpg" />
+    <None Include="wwwroot\img\blog\user2.jpg" />
+    <None Include="wwwroot\img\d1.png" />
+    <None Include="wwwroot\img\elements\a.jpg" />
+    <None Include="wwwroot\img\elements\a2.jpg" />
+    <None Include="wwwroot\img\elements\d.jpg" />
+    <None Include="wwwroot\img\elements\disabled-check.png" />
+    <None Include="wwwroot\img\elements\disabled-radio.png" />
+    <None Include="wwwroot\img\elements\f1.jpg" />
+    <None Include="wwwroot\img\elements\f2.jpg" />
+    <None Include="wwwroot\img\elements\f3.jpg" />
+    <None Include="wwwroot\img\elements\f4.jpg" />
+    <None Include="wwwroot\img\elements\f5.jpg" />
+    <None Include="wwwroot\img\elements\f6.jpg" />
+    <None Include="wwwroot\img\elements\f7.jpg" />
+    <None Include="wwwroot\img\elements\f8.jpg" />
+    <None Include="wwwroot\img\elements\g1.jpg" />
+    <None Include="wwwroot\img\elements\g2.jpg" />
+    <None Include="wwwroot\img\elements\g3.jpg" />
+    <None Include="wwwroot\img\elements\g4.jpg" />
+    <None Include="wwwroot\img\elements\g5.jpg" />
+    <None Include="wwwroot\img\elements\g6.jpg" />
+    <None Include="wwwroot\img\elements\g7.jpg" />
+    <None Include="wwwroot\img\elements\g8.jpg" />
+    <None Include="wwwroot\img\elements\primary-check.png" />
+    <None Include="wwwroot\img\elements\primary-radio.png" />
+    <None Include="wwwroot\img\elements\success-check.png" />
+    <None Include="wwwroot\img\elements\success-radio.png" />
+    <None Include="wwwroot\img\header-bg.jpg" />
+    <None Include="wwwroot\img\i1.jpg" />
+    <None Include="wwwroot\img\i2.jpg" />
+    <None Include="wwwroot\img\i3.jpg" />
+    <None Include="wwwroot\img\i4.jpg" />
+    <None Include="wwwroot\img\i5.jpg" />
+    <None Include="wwwroot\img\i6.jpg" />
+    <None Include="wwwroot\img\i7.jpg" />
+    <None Include="wwwroot\img\i8.jpg" />
+    <None Include="wwwroot\img\logo.png" />
+    <None Include="wwwroot\img\o1.png" />
+    <None Include="wwwroot\img\o2.png" />
+    <None Include="wwwroot\img\o3.png" />
+    <None Include="wwwroot\img\o4.png" />
+    <None Include="wwwroot\img\o5.png" />
+    <None Include="wwwroot\img\o6.png" />
+    <None Include="wwwroot\img\p1.png" />
+    <None Include="wwwroot\img\p2.png" />
+    <None Include="wwwroot\img\pages\f1.jpg" />
+    <None Include="wwwroot\img\pages\f2.jpg" />
+    <None Include="wwwroot\img\pages\list.jpg" />
+    <None Include="wwwroot\img\pages\t1.jpg" />
+    <None Include="wwwroot\img\pages\t2.jpg" />
+    <None Include="wwwroot\img\pages\t3.jpg" />
+    <None Include="wwwroot\img\pages\t4.jpg" />
+    <None Include="wwwroot\img\play-btn.png" />
+    <None Include="wwwroot\img\post.png" />
+    <None Include="wwwroot\img\r1.jpg" />
+    <None Include="wwwroot\img\r1.png" />
+    <None Include="wwwroot\img\r2.png" />
+    <None Include="wwwroot\img\t1.png" />
+    <None Include="wwwroot\img\t2.png" />
+    <None Include="wwwroot\img\t3.png" />
+    <None Include="wwwroot\img\user.jpg" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.1" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.2" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.1" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.1">
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.2">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
