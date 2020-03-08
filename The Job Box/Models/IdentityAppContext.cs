@@ -13,5 +13,7 @@ namespace The_Job_Box.Models
         {
 
         }
+
+        public DbSet<Jobs> Jobs { get; set; }
     }
 }

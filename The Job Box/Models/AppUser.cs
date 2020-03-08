@@ -10,5 +10,6 @@ namespace The_Job_Box.Models
     {
         public String FirstName { get; set; }
         public String LastName { get; set; }
+        public String FullName { get; set; }
     }
 }

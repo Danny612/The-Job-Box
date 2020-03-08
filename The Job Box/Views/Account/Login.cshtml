@@ -9,22 +9,37 @@
     ViewData["Title"] = "Log in";
 }
 
-<h2>@ViewData["Title"]</h2>
+<section class="banner-area relative" id="home">
+    <div class="overlay overlay-bg"></div>
+    <div class="container">
+        <div class="row d-flex align-items-center justify-content-center">
+            <div class="about-content col-lg-12">
+                <h1 class="text-white">
+                    Login
+                </h1>
+                <p class="text-white link-nav"><a asp-area="" asp-controller="Home" asp-action="Index">Home </a> <span class="lnr lnr-arrow-right"></span><a asp-area="" asp-action="Login" asp-controller="Account">Login</a></p>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End banner Area -->
+
+<h1 class="mb-10">@ViewData["Title"]</h1>
 <div class="row">
     <div class="col-md-4">
         <section>
-            <form asp-route-returnurl="@ViewData["ReturnUrl"]" method="post">
+            <form class="form-area" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post">
                 <h4>Use a local account to log in.</h4>
                 <hr />
                 <div asp-validation-summary="All" class="text-danger"></div>
-                <div class="form-group">
-                    <label asp-for="Username"></label>
-                    <input asp-for="Username" class="form-control" />
+                <div class="col-lg-12 form-group">
+
+                    <input asp-for="Username" placeholder="Enter your User Name" onfocus="this.placeholder = ''" class="common-input mb-20 form-control" required="" type="text" />
                     <span asp-validation-for="Username" class="text-danger"></span>
                 </div>
-                <div class="form-group">
-                    <label asp-for="Password"></label>
-                    <input asp-for="Password" class="form-control" />
+                <div class="col-lg-12 form-group">
+
+                    <input asp-for="Password" placeholder="Enter your Password" onfocus="this.placeholder = ''" class="common-input mb-20 form-control" required="" type="text" />
                     <span asp-validation-for="Password" class="text-danger"></span>
                 </div>
                 <div class="form-group">
@@ -35,18 +50,27 @@
                         </label>
                     </div>
                 </div>
-                <div class="form-group">
-                    <button type="submit" class="btn btn-primary">Log in</button>
-                </div>
-                <div class="form-group">
-                    <p>
-                        <a asp-controller="Account" asp-action="ForgotPassword">Forgot your password?</a>
-                    </p>
-                    <p>
-                        <a asp-action="Register" asp-route-returnurl="@ViewData["ReturnUrl"]">Register as a new user?</a>
-                    </p>
-                </div>
+
+                <button type="submit" class="primary-btn mt-20 text-white" style="float: left;">Login</button>
+
+                <hr />
+                <br />
+                <br />
+
+                <br />
+                <br /> <br />
+                <br />
+
             </form>
+
+            <div class="col-lg-12">
+
+                <a asp-controller="Account" asp-action="ForgotPassword">Forgot your password?</a>
+                <br />
+
+                <a asp-action="Register" asp-route-returnurl="@ViewData["ReturnUrl"]">Register as a new user?</a>
+
+            </div>
         </section>
     </div>
     <div class="col-md-6 col-md-offset-2">

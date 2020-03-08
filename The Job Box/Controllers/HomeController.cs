@@ -28,6 +28,33 @@ namespace The_Job_Box.Controllers
             return View();
         }
 
+        public IActionResult AboutUs()
+        {
+            return View();
+        }
+        public IActionResult Employers()
+        {
+            return View();
+        }
+
+        public IActionResult BlogPosts()
+        {
+            return View();
+        }
+
+        public IActionResult JobCategory()
+        {
+            return View();
+        }
+
+        public IActionResult ContactUs()
+        {
+            return View();
+        }
+
+
+
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

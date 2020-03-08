@@ -83,6 +83,7 @@ namespace The_Job_Box.Controllers
                     UserName = model.Email,
                     Email = model.Email,
                     PhoneNumber = model.PhoneNumber,
+                    FullName = model.LastName + model.FirstName
 
                 };
 
