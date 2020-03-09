@@ -22,10 +22,10 @@
 
 <div class="row">
     <div class="col-4">
-        <form class="form-area" asp-controller="Account" asp-action="Register" asp-route-returnUrl="@ViewData["ReturnUrl"]" method="post">
+        <form class="form-area"  asp-route-returnUrl="@ViewData["ReturnUrl"]" method="post">
             <h1 class="mb-10" class="text-info">Create a new account.</h1>
             <hr />
-           
+            <div asp-validation-Summary="All" class="text-danger"></div>
             <div   class="col-lg-12 form-group">
 
                 <input asp-for="FirstName" placeholder="Enter your name" onfocus="this.placeholder = ''" class="common-input mb-20 form-control" required="" type="text">
@@ -47,19 +47,18 @@
             </div>
             <div class="col-lg-12 form-group">
 
-                <input asp-for="Password" placeholder="Enter your Password" onfocus="this.placeholder = ''" class="common-input mb-20 form-control" required="" type="text" />
+                <input asp-for="Password" placeholder="Enter your Password" onfocus="this.placeholder = ''" class="common-input mb-20 form-control" required="" type="password" />
                 <span asp-validation-for="Password" class="text-danger"></span>
             </div>
             <div class="col-lg-12 form-group">
 
-                <input asp-for="ConfirmPassword" placeholder="Confirm Password" onfocus="this.placeholder = ''" class="common-input mb-20 form-control" required="" type="text" />
+                <input asp-for="ConfirmPassword" placeholder="Confirm Password" onfocus="this.placeholder = ''" class="common-input mb-20 form-control" required="" type="password" />
                 <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
             </div>
 
 
             <button type="submit" class="primary-btn mt-20 text-white" style="float: right;" value="Register">Register</button>
 
-            @Html.AntiForgeryToken()
         </form>
     </div>
 </div>

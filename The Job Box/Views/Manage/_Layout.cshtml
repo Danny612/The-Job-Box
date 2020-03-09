@@ -2,20 +2,37 @@
     Layout = "/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Manage your account</h2>
 
-<div>
-    <h4>Change your account settings</h4>
-    <hr />
-    <div class="row">
-        <div class="col-md-3">
-            @await Html.PartialAsync("_ManageNav")
-        </div>
-        <div class="col-md-9">
-            @RenderBody()
+    <div>
+
+        <section class="banner-area relative" id="home">
+            <div class="overlay overlay-bg"></div>
+            <div class="container">
+                <div class="row d-flex align-items-center justify-content-center">
+                    <div class="about-content col-lg-12">
+                        <h1 class="text-white">
+                            Account Settings
+                        </h1>
+                        <p class="text-white link-nav"><a asp-area="" asp-controller="Home" asp-action="Index">Home </a> <span class="lnr lnr-arrow-right"></span><a asp-area="" asp-controller="Manage" asp-action="Index">Manage Account</a></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- End banner Area -->
+
+        <h2>Manage your account</h2>
+
+        <h4>Change your account settings</h4>
+        <hr />
+        <div class="row">
+            <div class="col-md-3">
+                @await Html.PartialAsync("_ManageNav")
+            </div>
+            <div class="col-md-9">
+                @RenderBody()
+            </div>
         </div>
     </div>
-</div>
 
 @section Scripts {
     @RenderSection("Scripts", required: false)

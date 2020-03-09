@@ -72,8 +72,9 @@ namespace The_Job_Box.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Register(RegisterViewModel model)
+        public async Task<IActionResult> Register(RegisterViewModel model, string returnUrl = null)
         {
+            ViewData["ReturnUrl"] = returnUrl;
             if (ModelState.IsValid)
             {
                 var identityUser = new AppUser
@@ -90,11 +91,12 @@ namespace The_Job_Box.Controllers
                 var identityResults = await _userManager.CreateAsync(identityUser, model.Password);
                 if (identityResults.Succeeded)
                 {
+                    _logger.LogInformation("User created a new account with password.");
 
 
                     await _signInManager.SignInAsync(identityUser, isPersistent: false);
-                    return View(model);
-                    
+                    _logger.LogInformation("User created a new account with password.");
+                    return RedirectToLocal(returnUrl);
                 }
                 else
                 {
@@ -316,6 +318,18 @@ namespace The_Job_Box.Controllers
             ViewData["ReturnUrl"] = returnUrl;
             return View(model);
 
+        }
+
+        private IActionResult RedirectToLocal(string returnUrl)
+        {
+            if (Url.IsLocalUrl(returnUrl))
+            {
+                return Redirect(returnUrl);
+            }
+            else
+            {
+                return RedirectToAction(nameof(HomeController.Index), "Home");
+            }
         }
 
         public IActionResult ExternalLoginFailure()
