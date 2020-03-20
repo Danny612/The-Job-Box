@@ -1,0 +1,26 @@
+﻿
+@{
+    ViewData["Title"] = "RealStandard";
+}
+
+<!-- start banner Area -->
+<section class="banner-area relative" id="home">
+    <div class="overlay overlay-bg"></div>
+    <div class="container">
+        <div class="row d-flex align-items-center justify-content-center">
+            <div class="about-content col-lg-12">
+                <h1 class="text-white">
+                    Employers
+                </h1>
+                <p class="text-white link-nav">
+                    <a asp-controller="Home" asp-action="Index" asp-area="">Home </a>
+                    <span class="lnr lnr-arrow-right"></span>
+                    <a asp-area="" asp-controller="Employer" asp-action="Index"> Employers</a>
+                    <span class="lnr lnr-arrow-right"></span>
+                    <a asp-area="" asp-controller="Employer" asp-action="RealStandard">Real Standard user</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End banner Area -->
