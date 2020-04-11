@@ -10,7 +10,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using The_Job_Box.Models;
 using The_Job_Box.Models.ManageViewModels;
-//using The_Job_Box.Services;
+using The_Job_Box.Services;
+
 
 namespace The_Job_Box.Controllers
 {
@@ -20,7 +21,7 @@ namespace The_Job_Box.Controllers
     {
         private readonly UserManager<AppUser> _userManager;
         private readonly SignInManager<AppUser> _signInManager;
-      //  private readonly IEmailSender _emailSender;
+       private readonly IEmailSender _emailSender;
         private readonly ILogger _logger;
         private readonly UrlEncoder _urlEncoder;
         private readonly IdentityAppContext _db;
@@ -31,14 +32,14 @@ namespace The_Job_Box.Controllers
         public ManageController(
           UserManager<AppUser> userManager,
           SignInManager<AppUser> signInManager,
-         // IEmailSender emailSender,
+          IEmailSender emailSender,
           ILogger<ManageController> logger,
           UrlEncoder urlEncoder,
           IdentityAppContext db)
         {
             _userManager = userManager;
             _signInManager = signInManager;
-         //   _emailSender = emailSender;
+            _emailSender = emailSender;
             _logger = logger;
             _urlEncoder = urlEncoder;
             _db = db;
@@ -107,29 +108,29 @@ namespace The_Job_Box.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public async Task<IActionResult> SendVerificationEmail(IndexViewModel model)
-        //{
-        //    if (!ModelState.IsValid)
-        //    {
-        //        return View(model);
-        //    }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> SendVerificationEmail(IndexViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
 
-        //    var user = await _userManager.GetUserAsync(User);
-        //    if (user == null)
-        //    {
-        //        throw new ApplicationException($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
-        //    }
+            var user = await _userManager.GetUserAsync(User);
+            if (user == null)
+            {
+                throw new ApplicationException($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
+            }
 
-        //    var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
-        //    var callbackUrl = Url.EmailConfirmationLink(user.Id, code, Request.Scheme);
-        //    var email = user.Email;
-        //    await _emailSender.SendEmailConfirmationAsync(email, callbackUrl);
+            var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+            var callbackUrl = Url.EmailConfirmationLink(user.Id, code, Request.Scheme);
+            var email = user.Email;
+            await _emailSender.SendEmailConfirmationAsync(email, callbackUrl);
 
-        //    StatusMessage = "Verification email sent. Please check your email.";
-        //    return RedirectToAction(nameof(Index));
-        //}
+            StatusMessage = "Verification email sent. Please check your email.";
+            return RedirectToAction(nameof(Index));
+        }
 
         [HttpGet]
         public async Task<IActionResult> ChangePassword()

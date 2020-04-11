@@ -14,6 +14,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using The_Job_Box.Models;
 using Microsoft.EntityFrameworkCore;
+using The_Job_Box.Services;
 
 namespace The_Job_Box
 {
@@ -33,11 +34,13 @@ namespace The_Job_Box
                 .AddEntityFrameworkStores<IdentityAppContext>()
                 .AddDefaultTokenProviders();
 
-
             services.AddDbContext<IdentityAppContext>(cfg =>
             {
                 cfg.UseSqlServer(Configuration.GetConnectionString("AppData"));
             });
+
+            // Add application services.
+            services.AddTransient<IEmailSender, EmailSender>();
 
             services.AddControllersWithViews();
         }

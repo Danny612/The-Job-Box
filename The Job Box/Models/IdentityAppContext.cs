@@ -15,5 +15,7 @@ namespace The_Job_Box.Models
         }
 
         public DbSet<Jobs> Jobs { get; set; }
+        public DbSet<JobCategory> Category { get; set; }
+        public DbSet<SubJobCategory> SubCategory { get; set; }
     }
 }

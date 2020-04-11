@@ -1,7 +1,9 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
 
 @inject SignInManager<AppUser> SignInManager
 @inject UserManager<AppUser> UserManager
+
 
 <html lang="en">
 <head>
@@ -18,7 +20,8 @@
     <link href="~/css/animate.min.css" rel="stylesheet" />
     <link href="~/css/owl.carousel.css" rel="stylesheet" />
     <link href="~/css/main.css" rel="stylesheet" />
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-timepicker/1.10.0/jquery.timepicker.css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.9/css/all.css" integrity="sha384-5SOiIsAziJl6AWe0HWRKTXlfcSHKmYV4RBF18PPJ173Kzn7jzMyFuTtk8JA7QQG1" crossorigin="anonymous">
 
 </head>
 
@@ -61,17 +64,32 @@
                 <div id="logo">
                     <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">The JobBox</a>
                 </div>
+
+
                 <nav id="nav-menu-container">
                     <ul class="nav-menu">
+
+                        @if (SignInManager.IsSignedIn(User) && User.IsInRole(StaticData.AdminEndUser))
+                        {
+                            <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
+                            <li><a asp-area="" asp-controller="JobCategories" asp-action="Index"> Add Job Categories</a></li>
+                            <li><a asp-area="" asp-controller="SubJobCategories" asp-action="Index"> Add Job Sub-Categories</a></li>
+                            <li><a asp-area="" asp-controller="Employer" asp-action="Index">Employers</a></li>
+                            <li><a asp-area="" asp-controller="Home" asp-action="BlogPosts">EMployees</a></li>
+                        }
+
+                        else
+                        {
+
                         <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
                         <li><a asp-area="" asp-controller="Home" asp-action="AboutUs">About Us</a></li>
                         <li><a asp-area="" asp-controller="Home" asp-action="JobCategory">Job Categories</a></li>
-                        <li><a asp-area="" asp-controller="Employer" asp-action="Index">Employers</a></li>
-                        <li><a asp-area="" asp-controller="Home" asp-action="BlogPosts" >Blog</a></li>
+                        <li><a asp-area="" asp-controller="Employer" asp-action="Index">Employer</a></li>
+                        <li><a asp-area="" asp-controller="Home" asp-action="BlogPosts">Blog</a></li>
                         <li><a asp-area="" asp-controller="Home" asp-action="ContactUs">Contact Us</a></li>
 
                         <li class="menu-has-children">
-                            <a class="text-white" >More</a>
+                            <a class="text-white">More</a>
                             <ul>
                                 <li><a href="">Career Center</a></li>
                                 <li><a href="">Job Seekers</a></li>
@@ -80,36 +98,35 @@
                             </ul>
                         </li>
 
-
-                        @if(SignInManager.IsSignedIn(User))
+                        }
+                        @if (SignInManager.IsSignedIn(User))
                         {
                             <li class="menu-has-children">
-                         <a>Account</a>
-                       
-                            <ul>
-                                <li>
-                                    <a asp-area="" asp-controller="Manage" asp-action="Index" title="Manage" >@UserManager.GetUserName(User)</a>
-                                </li>
-                                <li>
-                                    <form asp-area="" asp-controller="Account" asp-action="Logout" method="post" id="logoutForm">
-                                        <button class="align-content-center align-items-xl-stretch" type="submit">Log out</button>
-                                    </form>
-                                </li>
-                            </ul>
-                       
-                        </li>
-                                }
-                                else
+                                <a class="text-white">Account</a>
 
-                                {
+                                <ul>
+                                    <li>
+                                        <a asp-area="" asp-controller="Manage" asp-action="Index" title="Manage">@UserManager.GetUserName(User)</a>
+                                    </li
+                                    <li>
+                                        <form asp-area="" asp-controller="Account" asp-action="Logout" method="post" id="logoutForm">
+                                            <button class="align-content-center align-items-xl-stretch" type="submit">Log out</button>
+                                        </form>
+                                    </li>
+                                </ul>
+
+                            </li>
+                        }
+                        else
+
+                        {
+
+                            <li><a asp-area="" asp-controller="Account" class="ticker-btn" asp-action="Login">Login</a></li>
                             <li><a asp-area="" asp-controller="Account" class="ticker-btn" asp-action="Register">Register</a></li>
-                            <li> <a asp-area="" asp-controller="Account" class="ticker-btn" asp-action="Login">Log in</a></li>
-                            }
+                        }
 
-
-
-
-                        </ul>
+                        
+                    </ul>
                 </nav><!-- #nav-menu-container -->
             </div>
         </div>

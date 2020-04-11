@@ -1,9 +1,9 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace The_Job_Box.Models.AccountViewModels
+namespace The_Job_Box.Models.EmployeeAccountViewModels
 {
-    public class RegisterViewModel
+    public class EmployeeRegisterViewModel
     {
          [Required]
         [EmailAddress]
@@ -32,6 +32,10 @@ namespace The_Job_Box.Models.AccountViewModels
         [Required]
         [Display(Name = "Phone Number")]
         public string PhoneNumber { get; set; }
+
+        [Required]
         public string FullName { get; set; }
+
+       
     }
 }

@@ -1,0 +1,53 @@
+﻿@model The_Job_Box.Models.JobCategory
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<!-- start banner Area -->
+<section class="banner-area relative" id="home">
+    <div class="overlay overlay-bg"></div>
+    <div class="container">
+        <div class="row d-flex align-items-center justify-content-center">
+            <div class="about-content col-lg-12">
+                <h1 class="text-white">
+                    Jobs Categories
+                </h1>
+                <p class="text-white link-nav">
+                    <a asp-controller="Home" asp-action="Index" asp-area="">Home </a>
+                    <span class="lnr lnr-arrow-right"></span>
+                    <a asp-area="" asp-controller="JobCategories" asp-action="Index"> Job Categories</a>
+                    <span class="lnr lnr-arrow-right"></span>
+                    <a asp-area="" asp-controller="JobCategories" asp-action="Delete">Delete Job Category</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End banner Area -->
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>JobCategory</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.DisplayOrder)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.DisplayOrder)
+        </dd>
+    </dl>
+
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a type="button" class="btn btn-success" asp-action="Index">Back to List</a>
+    </form>
+</div>

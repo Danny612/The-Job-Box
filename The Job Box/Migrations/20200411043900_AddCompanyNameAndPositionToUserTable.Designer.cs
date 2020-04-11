@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using The_Job_Box.Models;
 
 namespace The_Job_Box.Migrations
 {
     [DbContext(typeof(IdentityAppContext))]
-    partial class IdentityAppContextModelSnapshot : ModelSnapshot
+    [Migration("20200411043900_AddCompanyNameAndPositionToUserTable")]
+    partial class AddCompanyNameAndPositionToUserTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -237,12 +239,12 @@ namespace The_Job_Box.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("DisplayOrder")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Name")
+                    b.Property<string>("CartegoryName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("DisplayOrder")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -272,6 +274,27 @@ namespace The_Job_Box.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("JobLocation");
+                });
+
+            modelBuilder.Entity("The_Job_Box.Models.JobSubCategory", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CategoryId");
+
+                    b.ToTable("SubCategory");
                 });
 
             modelBuilder.Entity("The_Job_Box.Models.Jobs", b =>
@@ -319,27 +342,6 @@ namespace The_Job_Box.Migrations
                     b.HasIndex("SubCategoryId");
 
                     b.ToTable("Jobs");
-                });
-
-            modelBuilder.Entity("The_Job_Box.Models.SubJobCategory", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("CategoryId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CategoryId");
-
-                    b.ToTable("SubCategory");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -393,6 +395,15 @@ namespace The_Job_Box.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("The_Job_Box.Models.JobSubCategory", b =>
+                {
+                    b.HasOne("The_Job_Box.Models.JobCategory", "JobCategory")
+                        .WithMany()
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("The_Job_Box.Models.Jobs", b =>
                 {
                     b.HasOne("The_Job_Box.Models.JobCategory", "Category")
@@ -403,18 +414,9 @@ namespace The_Job_Box.Migrations
                         .WithMany()
                         .HasForeignKey("LocationId");
 
-                    b.HasOne("The_Job_Box.Models.SubJobCategory", "SubCategory")
+                    b.HasOne("The_Job_Box.Models.JobSubCategory", "SubCategory")
                         .WithMany()
                         .HasForeignKey("SubCategoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("The_Job_Box.Models.SubJobCategory", b =>
-                {
-                    b.HasOne("The_Job_Box.Models.JobCategory", "JobCategory")
-                        .WithMany()
-                        .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

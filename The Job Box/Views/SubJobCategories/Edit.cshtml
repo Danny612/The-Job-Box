@@ -1,0 +1,80 @@
+﻿@model The_Job_Box.Models.SubJobCategoryViewModels.SubCategoryAndCategoryViewModel
+@using The_Job_Box.Extensions
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<!-- start banner Area -->
+<section class="banner-area relative" id="home">
+    <div class="overlay overlay-bg"></div>
+    <div class="container">
+        <div class="row d-flex align-items-center justify-content-center">
+            <div class="about-content col-lg-12">
+                <h1 class="text-white">
+                    Jobs Sub-Categories
+                </h1>
+                <p class="text-white link-nav">
+                    <a asp-controller="Home" asp-action="Index" asp-area="">Home </a>
+                    <span class="lnr lnr-arrow-right"></span>
+                    <a asp-area="" asp-controller="SubJobCategories" asp-action="Index">Jobs Sub-Categories</a>
+                    <span class="lnr lnr-arrow-right"></span>
+                    <a asp-area="" asp-controller="SubJobCategories" asp-action="Edit">Edit Job Sub-Categories</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End banner Area -->
+@Html.Partial("_StatusMessage", Model.StatusMessage)
+<hr />
+<div class="row">
+    <div class="col-8">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group row">
+                <div class="col-3">
+                    <label asp-for="SubCategory.Name" class="custom-label"></label>
+                </div>
+                <div class="col-5">
+                    <input asp-for="SubCategory.Name" class="form-control" />
+                </div>
+                <span asp-validation-for="SubCategory.Name" class="text-danger"></span>
+            </div>
+            <div class="form-group row">
+                <div class="col-3">
+                    <label asp-for="SubCategory.CategoryId" class="custom-label"></label>
+                </div>
+                <div class="col-5">
+                    <select asp-for="SubCategory.CategoryId" asp-items="Model.CategoryList.ToSelectListItem(Model.SubCategory.CategoryId)" class="form-control"></select>
+                </div>
+            </div>
+
+            <br />
+            <div class="form-group row">
+                <div class="col-3"></div>
+                <div class="col-5">
+                    <input type="submit" value="Update" class="btn btn-primary" />
+                    <a asp-action="Index" class="btn btn-success">Back to List</a>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="col-4">
+        @if (Model.SubCategoryList.Count() > 0)
+        {
+            <p> Existing Subcategories : </p>
+            <ul class="list-group">
+                @foreach (var item in Model.SubCategoryList)
+                {
+                    <li class="list-group-item">@item</li>
+
+                }
+            </ul>
+
+        }
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

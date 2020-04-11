@@ -1,4 +1,6 @@
 ﻿@model RegisterViewModel
+@inject SignInManager<AppUser> SignInManager
+
 @{
     ViewData["Title"] = "Register";
 }
@@ -11,9 +13,9 @@
         <div class="row d-flex align-items-center justify-content-center">
             <div class="about-content col-lg-12">
                 <h1 class="text-white">
-                   Register
+                    Register
                 </h1>
-                <p class="text-white link-nav"><a asp-area="" asp-controller="Home" asp-action="Index">Home </a> <span class="lnr lnr-arrow-right"></span><a  asp-area="" asp-controller="Account" asp-action="Register" >Register</a></p>
+                <p class="text-white link-nav"><a asp-area="" asp-controller="Home" asp-action="Index">Home </a> <span class="lnr lnr-arrow-right"></span><a asp-area="" asp-controller="Account" asp-action="Register">Register</a></p>
             </div>
         </div>
     </div>
@@ -22,11 +24,13 @@
 
 <div class="row">
     <div class="col-4">
+        <h1 class="mb-10 text-info">Create a new account.</h1>
+        <hr />
         <form class="form-area" asp-controller="Account" asp-action="Register" asp-route-returnUrl="@ViewData["ReturnUrl"]" method="post">
-            <h1 class="mb-10" class="text-info">Create a new account.</h1>
-            <hr />
-           
-            <div   class="col-lg-12 form-group">
+            <div class="col-lg-12 form-group">
+                <div asp-validation-summary="All" class="text-danger"></div>
+            </div>
+            <div class="col-lg-12 form-group">
 
                 <input asp-for="FirstName" placeholder="Enter your name" onfocus="this.placeholder = ''" class="common-input mb-20 form-control" required="" type="text">
                 <span asp-validation-for="FirstName" class="text-danger"></span>
@@ -47,24 +51,24 @@
             </div>
             <div class="col-lg-12 form-group">
 
-                <input asp-for="Password" placeholder="Enter your Password" onfocus="this.placeholder = ''" class="common-input mb-20 form-control" required="" type="text" />
+                <input asp-for="Password" placeholder="Enter your Password" onfocus="this.placeholder = ''" class="common-input mb-20 form-control" required="" type="password" />
                 <span asp-validation-for="Password" class="text-danger"></span>
             </div>
             <div class="col-lg-12 form-group">
 
-                <input asp-for="ConfirmPassword" placeholder="Confirm Password" onfocus="this.placeholder = ''" class="common-input mb-20 form-control" required="" type="text" />
+                <input asp-for="ConfirmPassword" placeholder="Confirm Password" onfocus="this.placeholder = ''" class="common-input mb-20 form-control" required="" type="password" />
                 <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
             </div>
 
 
-            <button type="submit" class="primary-btn mt-20 text-white" style="float: right;" value="Register">Register</button>
+            <button type="submit" class="primary-btn mt-20 text-white" style="float: right;">Register</button>
 
-            @Html.AntiForgeryToken()
+
         </form>
     </div>
 </div>
 
-
+@Html.AntiForgeryToken()
 <hr />
 <br />
 @section Scripts {

@@ -1,0 +1,57 @@
+﻿@model The_Job_Box.Models.JobCategory
+@using The_Job_Box.Extensions
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<!-- start banner Area -->
+<section class="banner-area relative" id="home">
+    <div class="overlay overlay-bg"></div>
+    <div class="container">
+        <div class="row d-flex align-items-center justify-content-center">
+            <div class="about-content col-lg-12">
+                <h1 class="text-white">
+                    Jobs Categories
+                </h1>
+                <p class="text-white link-nav">
+                    <a asp-controller="Home" asp-action="Index" asp-area="">Home </a>
+                    <span class="lnr lnr-arrow-right"></span>
+                    <a asp-area="" asp-controller="JobCategories" asp-action="Index"> Job Categories</a>
+                    <span class="lnr lnr-arrow-right"></span>
+                    <a asp-area="" asp-controller="JobCategories" asp-action="Edit">Edit Job Category</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End banner Area -->
+
+<h4>JobCategory</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DisplayOrder" class="control-label"></label>
+                <input asp-for="DisplayOrder" class="form-control" />
+                <span asp-validation-for="DisplayOrder" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+            <div>
+                <a type="button" class="btn btn-success" asp-action="Index">Back to List</a>
+            </div>
+        </form>
+    </div>
+
+</div>
+
+

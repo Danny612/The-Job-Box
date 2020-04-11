@@ -1,0 +1,63 @@
+﻿@model The_Job_Box.Models.JobCategory
+
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<!-- start banner Area -->
+<section class="banner-area relative" id="home">
+    <div class="overlay overlay-bg"></div>
+    <div class="container">
+        <div class="row d-flex align-items-center justify-content-center">
+            <div class="about-content col-lg-12">
+                <h1 class="text-white">
+                   Jobs Categories
+                </h1>
+                <p class="text-white link-nav">
+                    <a asp-controller="Home" asp-action="Index" asp-area="">Home </a>
+                    <span class="lnr lnr-arrow-right"></span>
+                    <a asp-area="" asp-controller="JobCategories" asp-action="Index"> Job Categories</a>
+                    <span class="lnr lnr-arrow-right"></span>
+                    <a asp-area="" asp-controller="JobCategories" asp-action="Create">Create Job Category</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End banner Area -->
+
+<br />
+<h2>Create SubCategory</h2>
+<br />
+
+<form asp-action="Create">
+    <div class="form-border">
+
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="Name" class="control-label"></label>
+            </div>
+            <div class="col-4">
+                <input asp-for="Name" class="form-control" />
+            </div>
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="DisplayOrder" class="control-label"></label>
+            </div>
+            <div class="col-4">
+                <input asp-for="DisplayOrder" class="form-control" />
+            </div>
+            <span asp-validation-for="DisplayOrder" class="text-danger"></span>
+        </div>
+        <br />
+        <div class="form-group">
+            <input type="submit" value="Create" class="btn btn-primary" /> &nbsp;
+            <a asp-action="Index" class="btn btn-success">Back to List</a>
+        </div>
+
+    </div>
+</form>

@@ -15,20 +15,19 @@ using The_Job_Box.Utility;
 
 namespace The_Job_Box.Controllers
 {
-
     [Authorize]
     [Route("[controller]/[action]")]
-    public class AccountController : Controller
+    public class AppUserController : Controller
     {
         private readonly UserManager<AppUser> _userManager;
         private readonly SignInManager<AppUser> _signInManager;
-        private readonly IEmailSender _emailSender;
+       private readonly IEmailSender _emailSender;
         private readonly ILogger _logger;
         private readonly IdentityAppContext _db;
         private readonly RoleManager<IdentityRole> _roleManager;
 
-        public AccountController(
-            UserManager<AppUser> userManager,
+        public AppUserController(
+             UserManager<AppUser> userManager,
             SignInManager<AppUser> signInManager,
             IEmailSender emailSender,
             ILogger<AccountController> logger,
@@ -42,6 +41,11 @@ namespace The_Job_Box.Controllers
             _roleManager = roleManager;
             _db = db;
         }
+        public IActionResult Index()
+        {
+            return View();
+        }
+
 
         [TempData]
         public string ErrorMessage { get; set; }
@@ -67,10 +71,11 @@ namespace The_Job_Box.Controllers
             {
                 // This doesn't count login failures towards account lockout
                 // To enable password failures to trigger account lockout, set lockoutOnFailure: true
-                var result = await _signInManager.PasswordSignInAsync(model.Username, model.Password, model.RememberMe, lockoutOnFailure: true);
+                var result = await _signInManager.PasswordSignInAsync(model.Username, model.Password, model.RememberMe, lockoutOnFailure: false);
                 if (result.Succeeded)
                 {
-                    var user = _db.Users.Where(u => u.Email == model.Username).FirstOrDefault(); 
+                    var user = _db.Users.Where(u => u.Email == model.Username).FirstOrDefault();
+                 
                     _logger.LogInformation("User logged in.");
                     return RedirectToLocal(returnUrl);
                 }
@@ -233,21 +238,20 @@ namespace The_Job_Box.Controllers
                     Email = model.Email,
                     PhoneNumber = model.PhoneNumber,
                     FirstName = model.FirstName,
-                    LastName = model.LastName,
-                    FullName = model.LastName + " " + model.FirstName,
-          
+                    LastName = model.LastName
                 };
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                 
+                    
+
                     if (!await _roleManager.RoleExistsAsync(StaticData.AdminEndUser))
                     {
                         await _roleManager.CreateAsync(new IdentityRole(StaticData.AdminEndUser));
                         var userAdmin = new AppUser
                         {
-                            UserName = "complexstudios6@gmail.com",
-                            Email = "complexstudios6@gmail.com",
+                            UserName = "admin@gmail.com",
+                            Email = "complesxtudios6@gmail.com",
                             PhoneNumber = "0505075633",
                             FirstName = "Complex",
                             LastName = "Studios"
@@ -270,7 +274,7 @@ namespace The_Job_Box.Controllers
 
                     await _signInManager.SignInAsync(user, isPersistent: false);
                     _logger.LogInformation("User created a new account with password.");
-
+                   
                     return RedirectToLocal(returnUrl);
                 }
                 AddErrors(result);
@@ -518,5 +522,3 @@ namespace The_Job_Box.Controllers
         #endregion
     }
 }
-
-
