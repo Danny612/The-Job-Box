@@ -32,6 +32,7 @@ namespace The_Job_Box.Models.AccountViewModels
         [Required]
         [Display(Name = "Phone Number")]
         public string PhoneNumber { get; set; }
+
         public string FullName { get; set; }
     }
 }

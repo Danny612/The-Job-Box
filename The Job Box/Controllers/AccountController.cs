@@ -67,7 +67,7 @@ namespace The_Job_Box.Controllers
             {
                 // This doesn't count login failures towards account lockout
                 // To enable password failures to trigger account lockout, set lockoutOnFailure: true
-                var result = await _signInManager.PasswordSignInAsync(model.Username, model.Password, model.RememberMe, lockoutOnFailure: true);
+                var result = await _signInManager.PasswordSignInAsync(model.Username, model.Password, model.RememberMe, lockoutOnFailure: false);
                 if (result.Succeeded)
                 {
                     var user = _db.Users.Where(u => u.Email == model.Username).FirstOrDefault(); 
@@ -240,7 +240,6 @@ namespace The_Job_Box.Controllers
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                 
                     if (!await _roleManager.RoleExistsAsync(StaticData.AdminEndUser))
                     {
                         await _roleManager.CreateAsync(new IdentityRole(StaticData.AdminEndUser));
@@ -250,17 +249,20 @@ namespace The_Job_Box.Controllers
                             Email = "complexstudios6@gmail.com",
                             PhoneNumber = "0505075633",
                             FirstName = "Complex",
-                            LastName = "Studios"
+                            LastName = "Studios",
+                            FullName = "Complex Studios"
+
                         };
                         var resultAdmin = await _userManager.CreateAsync(userAdmin, "Admin123*");
                         await _userManager.AddToRoleAsync(userAdmin, StaticData.AdminEndUser);
                     }
-                    if (!await _roleManager.RoleExistsAsync(StaticData.Employee))
+
+                    if (!await _roleManager.RoleExistsAsync(StaticData.BasicUser))
                     {
-                        await _roleManager.CreateAsync(new IdentityRole(StaticData.Employee));
+                        await _roleManager.CreateAsync(new IdentityRole(StaticData.BasicUser));
                     }
 
-                    await _userManager.AddToRoleAsync(user, StaticData.Employee);
+                    await _userManager.AddToRoleAsync(user, StaticData.BasicUser);
 
                     _logger.LogInformation("User created a new account with password.");
 

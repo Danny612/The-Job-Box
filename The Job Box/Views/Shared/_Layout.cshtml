@@ -74,6 +74,7 @@
                             <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
                             <li><a asp-area="" asp-controller="JobCategories" asp-action="Index"> Add Job Categories</a></li>
                             <li><a asp-area="" asp-controller="SubJobCategories" asp-action="Index"> Add Job Sub-Categories</a></li>
+                            <li><a asp-area="" asp-controller="SubJobCategories" asp-action="Index">View Jobs</a></li>
                             <li><a asp-area="" asp-controller="Employer" asp-action="Index">Employers</a></li>
                             <li><a asp-area="" asp-controller="Home" asp-action="BlogPosts">EMployees</a></li>
                         }
@@ -81,22 +82,22 @@
                         else
                         {
 
-                        <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
-                        <li><a asp-area="" asp-controller="Home" asp-action="AboutUs">About Us</a></li>
-                        <li><a asp-area="" asp-controller="Home" asp-action="JobCategory">Job Categories</a></li>
-                        <li><a asp-area="" asp-controller="Employer" asp-action="Index">Employer</a></li>
-                        <li><a asp-area="" asp-controller="Home" asp-action="BlogPosts">Blog</a></li>
-                        <li><a asp-area="" asp-controller="Home" asp-action="ContactUs">Contact Us</a></li>
+                            <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
+                            <li><a asp-area="" asp-controller="Home" asp-action="AboutUs">About Us</a></li>
+                            <li><a asp-area="" asp-controller="Home" asp-action="JobCategory">Job Categories</a></li>
+                            <li><a asp-area="" asp-controller="Employer" asp-action="Index">Employer</a></li>
+                            <li><a asp-area="" asp-controller="Home" asp-action="BlogPosts">Blog</a></li>
+                            <li><a asp-area="" asp-controller="Home" asp-action="ContactUs">Contact Us</a></li>
 
-                        <li class="menu-has-children">
-                            <a class="text-white">More</a>
-                            <ul>
-                                <li><a href="">Career Center</a></li>
-                                <li><a href="">Job Seekers</a></li>
-                                <li><a href="">Professional CV Services </a></li>
-                                <li><a herf=""></a>Assessments Catalogue</li>
-                            </ul>
-                        </li>
+                            <li class="menu-has-children">
+                                <a class="text-white">More</a>
+                                <ul>
+                                    <li><a href="">Career Center</a></li>
+                                    <li><a href="">Job Seekers</a></li>
+                                    <li><a href="">Professional CV Services </a></li>
+                                    <li><a herf=""></a>Assessments Catalogue</li>
+                                </ul>
+                            </li>
 
                         }
                         @if (SignInManager.IsSignedIn(User))
@@ -107,7 +108,7 @@
                                 <ul>
                                     <li>
                                         <a asp-area="" asp-controller="Manage" asp-action="Index" title="Manage">@UserManager.GetUserName(User)</a>
-                                    </li
+                                    </li>
                                     <li>
                                         <form asp-area="" asp-controller="Account" asp-action="Logout" method="post" id="logoutForm">
                                             <button class="align-content-center align-items-xl-stretch" type="submit">Log out</button>
@@ -125,7 +126,7 @@
                             <li><a asp-area="" asp-controller="Account" class="ticker-btn" asp-action="Register">Register</a></li>
                         }
 
-                        
+
                     </ul>
                 </nav><!-- #nav-menu-container -->
             </div>
