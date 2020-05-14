@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using The_Job_Box.Models;
 
 namespace The_Job_Box.Migrations
 {
     [DbContext(typeof(IdentityAppContext))]
-    partial class IdentityAppContextModelSnapshot : ModelSnapshot
+    [Migration("20200514103215_UpdateJobsTable")]
+    partial class UpdateJobsTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -230,32 +232,6 @@ namespace The_Job_Box.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
-            modelBuilder.Entity("The_Job_Box.Models.Blogposts", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Content")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("CreateTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("ImageUrl")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("ID");
-
-                    b.ToTable("Blogposts");
-                });
-
             modelBuilder.Entity("The_Job_Box.Models.JobCategory", b =>
                 {
                     b.Property<int>("Id")
@@ -355,9 +331,6 @@ namespace The_Job_Box.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("BlogpostsID")
-                        .HasColumnType("int");
-
                     b.Property<int>("CategoryId")
                         .HasColumnType("int");
 
@@ -366,8 +339,6 @@ namespace The_Job_Box.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("BlogpostsID");
 
                     b.HasIndex("CategoryId");
 
@@ -448,10 +419,6 @@ namespace The_Job_Box.Migrations
 
             modelBuilder.Entity("The_Job_Box.Models.SubJobCategory", b =>
                 {
-                    b.HasOne("The_Job_Box.Models.Blogposts", null)
-                        .WithMany("Tags")
-                        .HasForeignKey("BlogpostsID");
-
                     b.HasOne("The_Job_Box.Models.JobCategory", "JobCategory")
                         .WithMany()
                         .HasForeignKey("CategoryId")

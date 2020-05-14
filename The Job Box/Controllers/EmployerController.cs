@@ -5,11 +5,14 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Logging;
 using The_Job_Box.Models;
 using The_Job_Box.Models.AccountViewModels;
+using The_Job_Box.Models.JobsViewModel;
 using The_Job_Box.Services;
 using The_Job_Box.Utility;
 
@@ -26,13 +29,20 @@ namespace The_Job_Box.Controllers
         private readonly IdentityAppContext _db;
         private readonly RoleManager<IdentityRole> _roleManager;
 
+        private readonly IHostingEnvironment _hostingEnvironment;
+
+        [BindProperty]
+        public JobsViewModel JobsVM { get; set; }
+
+
         public EmployerController(
              UserManager<AppUser> userManager,
             SignInManager<AppUser> signInManager,
             IEmailSender emailSender,
             ILogger<AccountController> logger,
             IdentityAppContext db,
-            RoleManager<IdentityRole> roleManager)
+            RoleManager<IdentityRole> roleManager,
+             IHostingEnvironment hostingEnvironment)
         {
             _userManager = userManager;
             _signInManager = signInManager;
@@ -40,6 +50,13 @@ namespace The_Job_Box.Controllers
             _logger = logger;
             _roleManager = roleManager;
             _db = db;
+            _hostingEnvironment = hostingEnvironment;
+
+            JobsVM = new JobsViewModel()
+            {
+                Category = _db.Category.ToList(),
+                Jobs = new Models.Jobs()
+            };
         }
         public IActionResult Index()
         {
@@ -49,17 +66,28 @@ namespace The_Job_Box.Controllers
 
         public IActionResult RealBasic()
         {
-            return View();
+            return View(JobsVM);
         }
 
         public IActionResult RealStandard()
         {
-            return View();
+            return View(JobsVM);
         }
 
         public IActionResult RealUltimate()
         {
-            return View();
+            return View(JobsVM);
+        }
+
+        public JsonResult GetSubCategory(int CategoryId)
+        {
+            List<SubJobCategory> subCategoryList = new List<SubJobCategory>();
+
+            subCategoryList = (from subCategory in _db.SubCategory
+                               where subCategory.CategoryId == CategoryId
+                               select subCategory).ToList();
+
+            return Json(new SelectList(subCategoryList, "Id", "Name"));
         }
 
         [TempData]

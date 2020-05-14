@@ -9,30 +9,41 @@ namespace The_Job_Box.Models.JobsViewModel
 {
     public class JobsViewModel
     {
-      
-        public int ID { get; set; }
-        public Guid Job_ID { get; set; }
-        [Required]
-        public string JobName { get; set; }
+        public Jobs Jobs { get; set; }
+        public IEnumerable<JobCategory> Category { get; set; }
+        public IEnumerable<SubJobCategory> SubCategory { get; set; }
 
-        [Required]
-        [Display(Name = "Category")]
-        public int JobCategoryId { get; set; }
 
-        [ForeignKey("CategoryId")]
-        public virtual JobCategory Category { get; set; }
+        //public int ID { get; set; }
 
-        [Display(Name = "SubCategory")]
-        public int SubCategoryId { get; set; }
+        //[Required]
+        //[Display(Name = "Company Name")]
+        //public string CompanyName { get; set; }
+        //[Required]
+        //[Display(Name = "Company Telephone")]
+        //public string Telephone { get; set; }
+        //[Required]
+        //[Display(Name = "Name of Job")]
+        //public string JobName { get; set; }
 
-        [ForeignKey("SubCategoryId")]
-        public virtual SubJobCategory SubCategory { get; set; }
-        public virtual JobLocation Location { get; set; }
-        [Display(Name ="Job Salary")]
-        public double Salary { get; set; }
-        [Required]
-        public String Description { get; set; }
-        public String Summary { get; set; }
+        //[Required]
+        //[Display(Name = "Category")]
+        //public int JobCategoryId { get; set; }
+
+        //[ForeignKey("CategoryId")]
+        //public virtual JobCategory Category { get; set; }
+
+        //[Display(Name = "SubCategory")]
+        //public int SubCategoryId { get; set; }
+
+        //[ForeignKey("SubCategoryId")]
+        //public virtual SubJobCategory SubCategory { get; set; }
+        //public virtual JobLocation Location { get; set; }
+        //[Display(Name ="Job Salary")]
+        //public double Salary { get; set; }
+        //[Required]
+        //public String Description { get; set; }
+        //public String Summary { get; set; }
 
 
 

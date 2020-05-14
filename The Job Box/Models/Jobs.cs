@@ -11,8 +11,12 @@ namespace The_Job_Box.Models
     {
         [Required]
         public int ID { get; set; }
-      
 
+        [Required]
+        public string CompanyName { get; set; }
+
+        [Required]
+        public string Telephone { get; set; }
         [Required]
         public string JobName { get; set; }
 
@@ -32,7 +36,7 @@ namespace The_Job_Box.Models
         public int JobLocation { get; set; }
 
 
-        [ForeignKey("JobLocation ")]
+        [ForeignKey("JobLocation")]
         public virtual JobLocation Location { get; set; }
   
         public double Salary { get; set; }
