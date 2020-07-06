@@ -26,38 +26,6 @@
 </head>
 
 <body>
-
-    @*<header>
-            <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
-                <div class="container-fluid">
-                    <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">The JobBox</a>
-                    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse" id="navbarResponsive">
-                        <ul class="navbar-nav ml-auto">
-
-                            <li class="nav-item">
-                                <div class="form-inline">
-                                    @await Html.PartialAsync("_loginPartial")
-                                </div>
-                            </li>
-                            <li class="nav-item">
-                                <button type="submit" class="btn btn-link navbar-btn nav-link">About Us</button>
-                            </li>
-
-                            <li class="nav-item">
-
-                                <button class="btn btn-outline-danger">Post a job</button>
-                            </li>
-
-
-
-                        </ul>
-                    </div>
-                </div>
-            </nav>
-        </header>*@
     <header id="header" id="home">
         <div class="container">
             <div class="row align-items-center justify-content-between d-flex">
@@ -93,10 +61,10 @@
                             <li class="menu-has-children">
                                 <a class="text-white">More</a>
                                 <ul>
-                                    <li><a href="">Career Center</a></li>
+                                    <li><a asp-area="" asp-controller="Home" asp-action="CarierCenter" >Career Center</a></li>
                                     <li><a href="">Job Seekers</a></li>
-                                    <li><a href="">Professional CV Services </a></li>
-                                    <li><a herf=""></a>Assessments Catalogue</li>
+                                    <li><a  asp-area="" asp-controller="Home" asp-action="CVServices" >Professional CV Services </a></li>
+                                   
                                 </ul>
                             </li>
 

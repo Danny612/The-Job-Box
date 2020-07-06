@@ -12,10 +12,15 @@ namespace The_Job_Box.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly IdentityAppContext _db;
 
-        public HomeController(ILogger<HomeController> logger)
+
+        public HomeController(ILogger<HomeController> logger, IdentityAppContext db)
         {
             _logger = logger;
+            _db = db;
+
+            string jobscount = _db.Jobs.Count().ToString() + "+";
         }
 
         public IActionResult Index()
@@ -47,10 +52,16 @@ namespace The_Job_Box.Controllers
             return View();
         }
 
-        public IActionResult ContactUs()
+        public IActionResult CVServices()
         {
             return View();
         }
+
+        public IActionResult CarierCenter()
+        {
+            return View();
+        }
+
 
 
 
